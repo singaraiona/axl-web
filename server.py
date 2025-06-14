@@ -6,9 +6,14 @@ import webbrowser
 from urllib.parse import urlparse
 
 PORT = 8000
+DIRECTORY = "site"
 
-class CORSRequestHandler(http.server.SimpleHTTPRequestHandler):
+class Handler(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=DIRECTORY, **kwargs)
+
     def end_headers(self):
+        # Add CORS headers
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Access-Control-Allow-Methods', 'GET')
         self.send_header('Cache-Control', 'no-store, no-cache, must-revalidate')
@@ -19,8 +24,7 @@ def run_server():
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
     
     # Create the server
-    handler = CORSRequestHandler
-    with socketserver.TCPServer(("", PORT), handler) as httpd:
+    with socketserver.TCPServer(("", PORT), Handler) as httpd:
         print(f"\n🚀 Starting server at http://localhost:{PORT}")
         print("📂 Serving files from:", os.getcwd())
         print("\n📝 Available pages:")
