@@ -37,18 +37,6 @@
     </nav>
 
     <header class="hero-bg">
-        <div class="math-bg-svg" aria-hidden="true">
-            <svg width="100%" height="100%" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg"
-                style="position:absolute;top:0;left:0;width:100%;height:100%;">
-                <defs>
-                    <linearGradient id="bgGradient" x1="0" y1="0" x2="1200" y2="400" gradientUnits="userSpaceOnUse">
-                        <stop offset="0%" stop-color="#6c63ff" stop-opacity="0.1" />
-                        <stop offset="100%" stop-color="#ff2e88" stop-opacity="0.1" />
-                    </linearGradient>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#bgGradient)" />
-            </svg>
-        </div>
         <div class="hero-grid">
             <div class="hero-left">
                 <div class="hero-main-text">
@@ -223,6 +211,65 @@
             const el = document.getElementById('livecode');
             if (el) typeReplPairs(el, liveReplPairs);
         });
+
+        // Animate hero grid
+        function animateGrid() {
+            const svg = document.getElementById('hero-grid-bg');
+            const vLines = svg.querySelector('#v-lines');
+            const hLines = svg.querySelector('#h-lines');
+            const cols = 24, rows = 8;
+            const width = 1200, height = 400;
+            // Clear previous
+            vLines.innerHTML = '';
+            hLines.innerHTML = '';
+            // Create lines
+            for (let i = 0; i <= cols; i++) {
+                const x = (i / cols) * width;
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', x);
+                line.setAttribute('y1', 0);
+                line.setAttribute('x2', x);
+                line.setAttribute('y2', height);
+                line.setAttribute('stroke', i % 4 === 0 ? '#6c63ff' : '#fff');
+                line.setAttribute('stroke-opacity', i % 4 === 0 ? '0.13' : '0.07');
+                line.setAttribute('stroke-width', i % 4 === 0 ? '2' : '1');
+                vLines.appendChild(line);
+            }
+            for (let j = 0; j <= rows; j++) {
+                const y = (j / rows) * height;
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', 0);
+                line.setAttribute('y1', y);
+                line.setAttribute('x2', width);
+                line.setAttribute('y2', y);
+                line.setAttribute('stroke', j % 2 === 0 ? '#ff2e88' : '#fff');
+                line.setAttribute('stroke-opacity', j % 2 === 0 ? '0.13' : '0.07');
+                line.setAttribute('stroke-width', j % 2 === 0 ? '2' : '1');
+                hLines.appendChild(line);
+            }
+            // Animate subtle movement
+            let t = 0;
+            function animate() {
+                t += 0.008;
+                for (let i = 0; i <= cols; i++) {
+                    const line = vLines.children[i];
+                    const phase = t + i * 0.3;
+                    const dx = Math.sin(phase) * 4;
+                    line.setAttribute('x1', ((i / cols) * width) + dx);
+                    line.setAttribute('x2', ((i / cols) * width) + dx);
+                }
+                for (let j = 0; j <= rows; j++) {
+                    const line = hLines.children[j];
+                    const phase = t + j * 0.5;
+                    const dy = Math.cos(phase) * 3;
+                    line.setAttribute('y1', ((j / rows) * height) + dy);
+                    line.setAttribute('y2', ((j / rows) * height) + dy);
+                }
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+        document.addEventListener('DOMContentLoaded', animateGrid);
     </script>
 </body>
 
