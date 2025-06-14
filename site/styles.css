@@ -125,16 +125,34 @@ nav {
     max-width: 800px;
 }
 
-.hero h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-    color: var(--primary-color);
+.hero-main-text {
+    margin-bottom: 2.5rem;
 }
 
-.subtitle {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    color: var(--text-color);
+.hero-title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.hero-desc {
+    font-size: 1.35rem;
+    color: #e4e4e7;
+    margin-bottom: 0;
+    max-width: 38rem;
+    line-height: 1.6;
+}
+
+.cta-main {
+    margin-top: 1.5rem;
+}
+
+.hero-boxed-text,
+.boxed {
+    display: none !important;
 }
 
 .cta-buttons {
@@ -339,11 +357,11 @@ footer {
 /* HERO GRID LAYOUT */
 .hero-bg {
     background:
-        linear-gradient(120deg, #23232b 0%, #2d2d3a 100%),
-        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px 40px),
-        repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.04) 0, rgba(255, 255, 255, 0.04) 1px, transparent 1px 40px);
+        linear-gradient(120deg, #23232b 0%, #2d2d3a 100%);
     position: relative;
     overflow: hidden;
+    border-bottom: none !important;
+    box-shadow: none !important;
 }
 
 .hero-bg::after {
@@ -813,8 +831,8 @@ footer {
         url('data:image/svg+xml;utf8,<svg width="80" height="80" xmlns="http://www.w3.org/2000/svg"><g stroke="%23d1d5db" stroke-width="2" stroke-dasharray="0,4"><line x1="0" y1="0" x2="80" y2="0"/><line x1="0" y1="0" x2="0" y2="80"/></g></svg>') repeat,
         #fafbfc;
     padding: 5rem 2rem 5rem 2rem;
-    margin-top: -2rem;
-    box-shadow: 0 -2px 16px 0 rgba(0, 0, 0, 0.03);
+    margin-top: 0 !important;
+    box-shadow: none !important;
 }
 
 .features-light h2 {
