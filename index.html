@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXL | Micro Interpreter for Vector Operations</title>
+    <link rel="icon" type="image/svg+xml" href="site-favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">
+                <span class="axl-logo-svg" aria-label="AXL logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 22L16 8L22 22" stroke="#FF2E88" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <circle cx="16" cy="19" r="2" fill="#FFB400" />
+                    </svg>
+                </span>
+                <span class="axl-logo-text">AXL</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#examples">Examples</a>
+                <a href="#installation">Installation</a>
+                <a href="https://github.com/singaraiona/axl" target="_blank">GitHub</a>
+                <a href="#docs" class="docs-btn">Docs</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero-bg">
+        <div class="math-bg-svg" aria-hidden="true">
+            <svg width="100%" height="100%" viewBox="0 0 1200 400" fill="none" xmlns="http://www.w3.org/2000/svg"
+                style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <ellipse cx="600" cy="200" rx="420" ry="140" fill="url(#bgGradient)" filter="url(#blur)"
+                    opacity="0.18" />
+                <defs>
+                    <linearGradient id="bgGradient" x1="0" y1="0" x2="1200" y2="400" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#6c63ff" />
+                        <stop offset="1" stop-color="#ff2e88" />
+                    </linearGradient>
+                    <filter id="blur" x="-100" y="-100" width="1400" height="600">
+                        <feGaussianBlur stdDeviation="60" />
+                    </filter>
+                </defs>
+            </svg>
+        </div>
+        <div class="hero-grid">
+            <div class="hero-left">
+                <div class="hero-boxed-text">
+                    <div class="boxed">Parallel C</div>
+                    <div class="boxed">Fast and Easy</div>
+                </div>
+                <p class="hero-desc">Micro interpreter for vector operations that does what you need.</p>
+                <a href="#get-started" class="cta-main">Get started</a>
+            </div>
+            <div class="hero-right">
+                <div class="code-window">
+                    <div class="code-window-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="filename">axl repl</span>
+                    </div>
+                    <pre><code id="livecode" class="language-c"></code></pre>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="features-light" id="features">
+        <h2>Main Features</h2>
+        <div class="features-grid">
+            <div class="feature-card-light">
+                <div class="feature-icon" style="background:#ff2e88;"><i class="fas fa-bolt"></i></div>
+                <div class="feature-title">Lightning Fast</div>
+                <div class="feature-desc">Optimized C engine for instant vector operations and expressions.</div>
+            </div>
+            <div class="feature-card-light">
+                <div class="feature-icon" style="background:#ffb400;"><i class="fas fa-code"></i></div>
+                <div class="feature-title">Expressive Syntax</div>
+                <div class="feature-desc">Write math and vector expressions naturally, like in a REPL.</div>
+            </div>
+            <div class="feature-card-light">
+                <div class="feature-icon" style="background:#4ade80;"><i class="fas fa-memory"></i></div>
+                <div class="feature-title">Memory Efficient</div>
+                <div class="feature-desc">Custom heap and vector management for big data on small machines.</div>
+            </div>
+            <div class="feature-card-light">
+                <div class="feature-icon" style="background:#6c63ff;"><i class="fas fa-terminal"></i></div>
+                <div class="feature-title">CLI & Scripting</div>
+                <div class="feature-desc">Run scripts, automate tasks, and integrate with your workflow.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="examples" class="examples">
+        <h2>Code Examples</h2>
+        <div class="example-container">
+            <div class="example">
+                <h3>Basic Vector Operations</h3>
+                <pre><code class="language-c">// Create and manipulate vectors
+vec v1 = vec_new(3);
+vec_set(v1, 0, 1.0);
+vec_set(v1, 1, 2.0);
+vec_set(v1, 2, 3.0);
+
+// Vector addition
+vec v2 = vec_add(v1, v1);
+vec_print(v2);  // Output: [2.0, 4.0, 6.0]</code></pre>
+            </div>
+            <div class="example">
+                <h3>Vector Expressions</h3>
+                <pre><code class="language-c">// Complex vector expressions
+expr e = expr_parse("v1 + v2 * 2");
+vec result = expr_eval(e);
+vec_print(result);</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section id="installation" class="installation">
+        <h2>Installation</h2>
+        <div class="install-steps">
+            <div class="step">
+                <h3>1. Clone the Repository</h3>
+                <pre><code class="language-bash">git clone https://github.com/yourusername/axl.git
+cd axl</code></pre>
+            </div>
+            <div class="step">
+                <h3>2. Build the Project</h3>
+                <pre><code class="language-bash">make</code></pre>
+            </div>
+            <div class="step">
+                <h3>3. Run AXL</h3>
+                <pre><code class="language-bash">./axl</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-you-can-do">
+        <h2>What you can do with AXL</h2>
+        <div class="do-grid">
+            <div class="do-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Big Vectors</h3>
+                <p>Work with large vectors efficiently and safely.</p>
+            </div>
+            <div class="do-card code-card">
+                <div class="code-window-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="filename">math.axl</span>
+                </div>
+                <pre><code class="language-c">vec a = vec_new(1000);
+vec_fill(a, 1.0);
+vec b = vec_scale(a, 2.5);
+vec_print(b);</code></pre>
+            </div>
+            <div class="do-card">
+                <i class="fas fa-code"></i>
+                <h3>Expression Engine</h3>
+                <p>Parse and evaluate vector expressions on the fly.</p>
+            </div>
+            <div class="do-card code-card">
+                <div class="code-window-header">
+                    <span class="dot red"></span>
+                    <span class="dot yellow"></span>
+                    <span class="dot green"></span>
+                    <span class="filename">expr.axl</span>
+                </div>
+                <pre><code class="language-c">expr e = expr_parse("a + b * 2");
+vec result = expr_eval(e);
+vec_print(result);</code></pre>
+            </div>
+            <div class="do-card">
+                <i class="fas fa-terminal"></i>
+                <h3>CLI Ready</h3>
+                <p>Run scripts and commands directly from your terminal.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcases" id="showcases">
+        <div class="showcase-grid">
+            <div class="showcase-lottie">
+                <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+                <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_4kx2q32n.json"
+                    background="transparent" speed="1" style="width: 320px; height: 320px;" loop
+                    autoplay></lottie-player>
+            </div>
+            <div class="showcase-cards">
+                <div class="showcase-card code-card">
+                    <div class="code-window-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="filename">stats.axl</span>
+                    </div>
+                    <pre><code class="language-c">vec data = vec_from_array(arr, 100);
+double mean = vec_mean(data);
+printf("Mean: %f", mean);</code></pre>
+                </div>
+                <div class="showcase-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Data Science Ready</h3>
+                    <p>Integrate with your data pipelines and perform fast vectorized computations.</p>
+                </div>
+                <div class="showcase-card code-card">
+                    <div class="code-window-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="filename">cli.axl</span>
+                    </div>
+                    <pre><code class="language-bash">$ axl -e "sum([1,2,3,4])"
+10</code></pre>
+                </div>
+                <div class="showcase-card">
+                    <i class="fas fa-plug"></i>
+                    <h3>Extensible</h3>
+                    <p>Plug in your own C functions and extend the interpreter for your needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animated Stats Section -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" data-target="120000">0</div>
+                <div class="stat-label">Vectors Processed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="8000">0</div>
+                <div class="stat-label">Lines of Code</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="350">0</div>
+                <div class="stat-label">GitHub Stars</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>AXL</h4>
+                <p>A micro interpreter for vector operations</p>
+            </div>
+            <div class="footer-section">
+                <h4>Links</h4>
+                <a href="#features">Features</a>
+                <a href="#examples">Examples</a>
+                <a href="#installation">Installation</a>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <a href="https://github.com/yourusername/axl" target="_blank">GitHub</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 AXL. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+
+        // Animated Counter
+        function animateCounter(el) {
+            const target = +el.getAttribute('data-target');
+            const duration = 1200;
+            const start = 0;
+            let startTimestamp = null;
+            function step(timestamp) {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                el.textContent = Math.floor(progress * (target - start) + start).toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                } else {
+                    el.textContent = target.toLocaleString();
+                }
+            }
+            window.requestAnimationFrame(step);
+        }
+        function handleStatsAnimation() {
+            const stats = document.querySelectorAll('.stat-number');
+            let triggered = false;
+            function onScroll() {
+                const section = document.querySelector('.stats-section');
+                if (!triggered && section.getBoundingClientRect().top < window.innerHeight - 100) {
+                    stats.forEach(animateCounter);
+                    triggered = true;
+                    window.removeEventListener('scroll', onScroll);
+                }
+            }
+            window.addEventListener('scroll', onScroll);
+            onScroll();
+        }
+        document.addEventListener('DOMContentLoaded', handleStatsAnimation);
+
+        // Live REPL code typing effect for hero (line-by-line: input, output, repeat, with Unicode prompt)
+        const replPrompt = 'axl❯ ';
+        const liveReplPairs = [
+            ['v1 = [1, 2, 3]', '[1, 2, 3]'],
+            ['v2 = [4, 5, 6]', '[4, 5, 6]'],
+            ['v1 + v2', '[5, 7, 9]'],
+            ['sum(v1)', '6'],
+            ['mean(v2)', '5'],
+            ['exit()', ''],
+        ];
+        function typeReplPairs(el, pairs, speed = 18, loop = true) {
+            let pairIdx = 0, charIdx = 0, outLines = [], mode = 'input';
+            function type() {
+                if (pairIdx < pairs.length) {
+                    let [input, output] = pairs[pairIdx];
+                    if (mode === 'input') {
+                        if (charIdx <= input.length) {
+                            // Build all previous lines, then current line
+                            let currentLine = '<span class="repl-prompt">' + replPrompt + '</span>' + input.slice(0, charIdx) + (charIdx < input.length ? '<span class="repl-cursor">|</span>' : '');
+                            el.innerHTML = outLines.join('<br>') + (outLines.length ? '<br>' : '') + currentLine;
+                            charIdx++;
+                            setTimeout(type, input[charIdx - 1] === '\n' ? speed * 8 : speed);
+                        } else {
+                            outLines.push('<span class="repl-prompt">' + replPrompt + '</span>' + input);
+                            charIdx = 0;
+                            mode = 'output';
+                            setTimeout(type, 300);
+                        }
+                    } else if (mode === 'output' && output) {
+                        if (charIdx <= output.length) {
+                            let currentLine = '<span class="repl-output">' + output.slice(0, charIdx) + '</span>' + (charIdx < output.length ? '<span class="repl-cursor">|</span>' : '');
+                            el.innerHTML = outLines.join('<br>') + '<br>' + currentLine;
+                            charIdx++;
+                            setTimeout(type, output[charIdx - 1] === '\n' ? speed * 8 : speed);
+                        } else {
+                            outLines.push('<span class="repl-output">' + output + '</span>');
+                            charIdx = 0;
+                            mode = 'input';
+                            pairIdx++;
+                            setTimeout(type, 500);
+                        }
+                    } else if (mode === 'output' && !output) {
+                        // If output is empty, just add a blank line
+                        outLines.push('');
+                        charIdx = 0;
+                        mode = 'input';
+                        pairIdx++;
+                        setTimeout(type, 500);
+                    }
+                } else if (loop) {
+                    setTimeout(() => {
+                        el.innerHTML = '';
+                        pairIdx = 0;
+                        charIdx = 0;
+                        outLines = [];
+                        mode = 'input';
+                        type();
+                    }, 1800);
+                }
+            }
+            type();
+        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const el = document.getElementById('livecode');
+            if (el) typeReplPairs(el, liveReplPairs);
+        });
+    </script>
+</body>
+
+</html>
