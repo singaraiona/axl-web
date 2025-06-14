@@ -5,30 +5,17 @@ on:
     branches: [master]
 
 permissions:
-  contents: write       # Needed to push
-  id-token: write       # Needed for OIDC authentication
-  pages: write          # ✅ Needed for GitHub Pages deployment
+  contents: write
+  id-token: write
+  pages: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
-
-      - name: Setup GitHub Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload static site artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v4
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: ./site
-
-      - name: Debug OIDC token injection
-        run: |
-          echo "Checking for OIDC environment variables..."
-          env | grep ACTIONS_ID_TOKEN || echo "OIDC variables NOT available!"
-
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+      - uses: actions/deploy-pages@v4
