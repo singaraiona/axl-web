@@ -2,11 +2,12 @@ name: Deploy static site to GitHub Pages
 
 on:
   push:
-    branches: [master]  # Make sure you push to 'master' branch, or change this if you're using 'main'
+    branches: [master]
 
 permissions:
-  contents: write       # Required to push to gh-pages branch
-  id-token: write       # Required for OpenID Connect token
+  contents: write       # Needed to push
+  id-token: write       # Needed for OIDC authentication
+  pages: write          # ✅ Needed for GitHub Pages deployment
 
 jobs:
   deploy:
@@ -22,12 +23,12 @@ jobs:
       - name: Upload static site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./site  # Make sure this folder exists and contains index.html
+          path: ./site
 
       - name: Debug OIDC token injection
         run: |
-          echo "Checking for injected GitHub OIDC environment variables..."
-          env | grep ACTIONS_ID_TOKEN || echo "OIDC environment variables are NOT present!"
+          echo "Checking for OIDC environment variables..."
+          env | grep ACTIONS_ID_TOKEN || echo "OIDC variables NOT available!"
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
