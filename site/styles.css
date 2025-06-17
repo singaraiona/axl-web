@@ -437,20 +437,24 @@ footer {
 }
 
 .code-window {
-    background: var(--surface);
-    border: 1.5px solid var(--border);
+    background: var(--surface) !important;
+    border: 1.5px solid var(--border) !important;
+    box-shadow: 0 4px 24px rgba(24, 25, 38, 0.18) !important;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    height: 400px;
+    display: flex;
+    flex-direction: column;
 }
 
 .code-window-header {
-    background: var(--background);
+    background: var(--surface);
     padding: 0.8rem 1.2rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
     border-bottom: 1.5px solid var(--border);
+    flex-shrink: 0;
 }
 
 .dot {
@@ -481,25 +485,45 @@ pre {
     margin: 0;
     padding: 1.5rem;
     background: var(--surface);
+    overflow-y: auto;
+    flex-grow: 1;
+    height: calc(100% - 3.5rem);
 }
 
 code {
     font-family: 'Fira Code', monospace;
     font-size: 0.95rem;
     line-height: 1.6;
+    display: block;
+    color: var(--text);
 }
 
 .repl-prompt {
     color: var(--accent-yellow);
+    font-weight: 600;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    display: inline;
 }
 
 .repl-output {
     color: var(--accent-green);
+    font-weight: 500;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    display: inline;
 }
 
 .repl-cursor {
-    color: var(--text);
+    color: var(--accent-pink);
     animation: blink 1s step-end infinite;
+    font-weight: 600;
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    display: inline;
 }
 
 @keyframes blink {
@@ -912,4 +936,29 @@ code {
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
+}
+
+/* Remove special background, border, and shadow from code window and header for terminal authenticity */
+.code-window,
+.code-window-header,
+pre {
+    background: var(--background) !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+code,
+pre code {
+    background: transparent !important;
+}
+
+.hero-right .code-window {
+    background: #23243A !important;
+    border: 1.5px solid #3a3b4d !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28) !important;
+}
+
+.hero-right .code-window pre,
+.hero-right .code-window code {
+    background: transparent !important;
 }
