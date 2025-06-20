@@ -84,14 +84,14 @@
                     <div class="attractive-content">
                         <div class="performance-stats">
                             <div class="stat-item">
-                                <div class="stat-icon">⚡</div>
+                                <div class="stat-icon"><i data-feather="zap"></i></div>
                                 <div class="stat-text">
                                     <span class="stat-number">10x</span>
                                     <span class="stat-label">Faster</span>
                                 </div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-icon">🧠</div>
+                                <div class="stat-icon"><i data-feather="cpu"></i></div>
                                 <div class="stat-text">
                                     <span class="stat-number">50%</span>
                                     <span class="stat-label">Less Memory</span>
@@ -123,38 +123,38 @@
             </div>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
+                    <div class="feature-icon"><i data-feather="zap"></i></div>
                     <h3>Lightning Fast</h3>
                     <p>Optimized C implementation with minimal overhead for maximum performance on vector operations.
                     </p>
                     <a href="#docs" class="feature-link">Learn more →</a>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🧠</div>
+                    <div class="feature-icon"><i data-feather="cpu"></i></div>
                     <h3>Memory Efficient</h3>
                     <p>Smart memory management with zero-copy operations and efficient data structures.</p>
                     <a href="#docs" class="feature-link">Learn more →</a>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📐</div>
+                    <div class="feature-icon"><i data-feather="compass"></i></div>
                     <h3>Mathematical Precision</h3>
                     <p>Accurate floating-point arithmetic with support for complex mathematical operations.</p>
                     <a href="#docs" class="feature-link">Learn more →</a>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
+                    <div class="feature-icon"><i data-feather="tool"></i></div>
                     <h3>Easy Integration</h3>
                     <p>Simple C API that integrates seamlessly with existing applications and workflows.</p>
                     <a href="#docs" class="feature-link">Learn more →</a>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
+                    <div class="feature-icon"><i data-feather="bar-chart-2"></i></div>
                     <h3>Rich Operations</h3>
                     <p>Comprehensive set of vector operations including arithmetic, statistics, and linear algebra.</p>
                     <a href="#docs" class="feature-link">Learn more →</a>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
+                    <div class="feature-icon"><i data-feather="shield"></i></div>
                     <h3>Production Ready</h3>
                     <p>Battle-tested in real-world applications with comprehensive error handling and validation.</p>
                     <a href="#docs" class="feature-link">Learn more →</a>
@@ -228,8 +228,11 @@
             </div>
         </div>
     </footer>
+    <script src="https://unpkg.com/feather-icons"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+
             const terminalContentEl = document.getElementById('terminal-content');
 
             if (terminalContentEl) {
