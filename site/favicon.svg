@@ -1,14 +1,4 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Clean logo symbol -->
-  <g transform="translate(4, 8)">
-    <!-- Simple geometric background -->
-    <rect x="0" y="0" width="16" height="16" rx="3" fill="#dc3545"/>
-    
-    <!-- Clean vector arrow -->
-    <path d="M4 4 L12 8 L4 12" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-    <path d="M12 8 L14 8" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-  </g>
-  
-  <!-- Enhanced AXL typography -->
-  <text x="22" y="22" font-family="Inter, -apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="700" text-anchor="start" fill="#1a1a1a" letter-spacing="0.8">AXL</text>
+<svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="2" width="60" height="60" rx="12" stroke="#D63333" stroke-width="4"/>
+    <path d="M20 44 L32 32 M32 32 L44 20 M28 44 L36 36" stroke="#D63333" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" fill="none"/>
 </svg> 
