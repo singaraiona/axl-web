@@ -109,6 +109,7 @@
     .icon{width:44px; height:44px; border-radius:12px; flex:0 0 auto; display:grid; place-items:center; background:transparent; border:none}
     .icon i{font-size:28px; color:var(--brand); line-height:1}
     .ico{font-size:20px; color:var(--brand); flex:0 0 auto}
+    .btn .ico{color:currentColor}
     .feature h3{margin:2px 0 4px; font-size:1.05rem}
     .feature p{margin:0; color:#cbd6e6; font-size:.98rem}
     .usecases{padding:56px 0}
@@ -126,7 +127,7 @@
     .footer{
       margin-top:56px; padding:28px 0; border-top:1px solid var(--border); color:var(--muted); font-size:.95rem
     }
-    .footer a{color:var(--brand); text-decoration:none}
+    .footer a{color:var(--brand); text-decoration:none; display:inline-flex; gap:8px; align-items:center}
     .footer a:hover{text-decoration:underline}
     .nav-links a{display:inline-flex; gap:8px; align-items:center}
     .fade-in{opacity:0; transform: translateY(12px); transition: opacity .7s ease, transform .7s ease}
@@ -161,11 +162,11 @@
         <span>AXL DB</span>
       </a>
       <nav class="nav-links" aria-label="Main">
-        <a href="#features"><i class="ico fa-solid fa-star" aria-hidden="true"></i>Features</a>
-        <a href="#performance"><i class="ico fa-solid fa-gauge-high" aria-hidden="true"></i>Performance</a>
-        <a href="#use-cases"><i class="ico fa-solid fa-table-list" aria-hidden="true"></i>Use cases</a>
-        <a href="#get-started"><i class="ico fa-brands fa-github" aria-hidden="true"></i>Get started</a>
-        <a class="btn ghost" href="https://github.com/hetoku/axl-db" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="#features">Features</a>
+        <a href="#performance">Performance</a>
+        <a href="#use-cases">Use cases</a>
+        <a href="#get-started">Get started</a>
+        <a class="btn ghost" href="https://github.com/hetoku/axl-db" target="_blank" rel="noopener noreferrer"><i class="ico fa-brands fa-github" aria-hidden="true"></i>GitHub</a>
       </nav>
     </div>
   </header>
@@ -183,7 +184,7 @@
           </p>
           <div class="cta-row fade-in" style="transition-delay:.15s">
             <a class="btn" href="#get-started" aria-label="Get started with AXL DB">Get Started</a>
-            <a class="btn ghost" href="https://github.com/sponsors/hetoku" target="_blank" rel="noopener noreferrer" aria-label="Sponsor AXL DB on GitHub">Sponsor on GitHub</a>
+            <a class="btn ghost" href="https://github.com/sponsors/hetoku" target="_blank" rel="noopener noreferrer" aria-label="Sponsor AXL DB on GitHub"><i class="ico fa-brands fa-github" aria-hidden="true"></i>Sponsor on GitHub</a>
           </div>
           <div class="kpis fade-in" style="margin-top:18px; transition-delay:.2s">
             <div class="kpi">
