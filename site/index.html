@@ -12,8 +12,8 @@
       --muted:#8fa1b7;
       --text:#e7ecf3;
       --brand:#ffb224;
-      --brand-2:#ff9dbb;
-      --accent:#ff9dbb;
+      --brand-2:#a23155;
+      --accent:#a23155;
       --ok:#29d398;
       --warn:#ffb020;
       --border:#18223a;
@@ -119,8 +119,12 @@
     .bench-note{color:var(--muted); font-size:.85rem}
     .code{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size:.9rem; background:#0c0f16; color:#e9f2ff; border:1px solid #1c2333; border-radius:10px; padding:14px; overflow:auto
+      font-size:.9rem; background: var(--panel); color: var(--text); border:none !important; border-radius:10px; padding:14px; overflow:auto;
+      box-shadow:none !important; outline:none !important;
     }
+    pre.code{border:none !important; box-shadow:none !important; outline:none !important; background: var(--panel)}
+    pre.code code{background:transparent !important; border:none !important; box-shadow:none !important; outline:none !important}
+    .code code.hljs{background:transparent !important; border:none !important; box-shadow:none !important; outline:none !important}
     .callout{display:grid; gap:14px; grid-template-columns:1fr; padding:18px; background: var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow: var(--shadow)}
     .stack{display:flex; flex-direction:column; gap:8px}
     .row{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
@@ -153,6 +157,8 @@
   <link rel="icon" type="image/svg+xml" href="axl-logo.svg">
   <!-- Font Awesome (local) -->
   <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
+    <!-- Highlight.js (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css" />
 </head>
 <body>
   <header class="nav" role="banner" aria-label="Primary">
@@ -212,8 +218,8 @@
                   <stop offset="100%" stop-color="#ffb224"/>
                 </linearGradient>
                 <linearGradient id="g2" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#ff9dbb"/>
-                  <stop offset="100%" stop-color="#ff9dbb"/>
+                  <stop offset="0%" stop-color="#a23155"/>
+                  <stop offset="100%" stop-color="#a23155"/>
                 </linearGradient>
               </defs>
               <rect x="0" y="0" width="520" height="120" fill="none"/>
@@ -365,17 +371,14 @@ Generic DB   5–20 MB
         <div class="callout fade-in">
           <div class="stack">
             <strong>Build from source</strong>
-            <div class="code" aria-label="Build instructions">
-git clone https://github.com/hetoku/axl-db
+            <pre class="code" aria-label="Build instructions"><code class="language-bash">git clone https://github.com/hetoku/axl-db
 cd axl-db
 make            # or: cc -O3 -march=native -o axl examples/main.c src/*.c
-./axl --help
-            </div>
+./axl --help</code></pre>
           </div>
           <div class="stack">
             <strong>Embed the library</strong>
-            <div class="code" aria-label="C usage snippet">
-#include "axl.h"
+            <pre class="code" aria-label="C usage snippet"><code class="language-c">#include "axl.h"
 
 int main(void) {
   axl_db *db = axl_open("data.axl", AXL_CREATE_IF_MISSING);
@@ -384,8 +387,7 @@ int main(void) {
   axl_search(db, "users", (const float*)query, 128, 10, results);
   axl_close(db);
   return 0;
-}
-            </div>
+}</code></pre>
           </div>
         </div>
       </div>
@@ -410,6 +412,10 @@ int main(void) {
 
   <script>
     (function(){
+      // Syntax highlighting
+      document.addEventListener('DOMContentLoaded', function(){
+        if (window.hljs) { hljs.highlightAll(); }
+      });
       // Year
       document.getElementById('y').textContent = new Date().getFullYear();
 
@@ -437,6 +443,9 @@ int main(void) {
       });
     })();
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
 </body>
 </html>
 
