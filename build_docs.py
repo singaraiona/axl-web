@@ -312,11 +312,13 @@ __CSS__
     .docs-content th, .docs-content td{border:1px solid var(--border); padding:8px; text-align:left}
     .docs-content pre{background: var(--code, #0b111b); border-radius:12px; padding:14px; margin:16px 0; overflow:auto; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 8px 20px rgba(0,0,0,0.25)}
     .docs-content pre code{background: transparent !important}
+    .docs-content pre, .docs-content code{font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:.9rem}
     @media (max-width: 960px){ .docs-layout{grid-template-columns:1fr} }
   </style>
   <link rel=\"icon\" type=\"image/svg+xml\" href=\"../axl-logo.svg\"> 
   <link rel=\"stylesheet\" href=\"../vendor/fontawesome/css/all.min.css\" />
-  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai-sublime.min.css\" />
+  <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap\" />
+  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/panda-syntax-dark.min.css\" />
 </head>
 <body>
   <header class=\"nav\" role=\"banner\" aria-label=\"Primary\">

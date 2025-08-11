@@ -126,13 +126,19 @@
     .card h3{margin:0 0 6px}
     .bench-note{color:var(--muted); font-size:.85rem}
     .code{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size:.9rem; background: var(--code); color: var(--text); border:none !important; border-radius:10px; padding:14px; overflow:auto;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+      font-size:.9rem; background: var(--code); color: var(--text); border:none !important; border-radius:10px; padding:14px; overflow-y:auto; overflow-x:hidden;
       box-shadow:none !important; outline:none !important;
+      /* Hide scrollbars by default; content remains scrollable */
+      scrollbar-width: none; /* Firefox */
     }
+    .code::-webkit-scrollbar{ width:0; height:0 }
     pre.code{border:none !important; box-shadow:none !important; outline:none !important; background: var(--code)}
-    pre.code code{background:transparent !important; border:none !important; box-shadow:none !important; outline:none !important}
-    .code code.hljs{background:transparent !important; border:none !important; box-shadow:none !important; outline:none !important}
+    pre.code code, .code code, .code code.hljs{
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+      background:transparent !important; border:none !important; box-shadow:none !important; outline:none !important;
+      white-space: pre-wrap; word-break: break-word; overflow-wrap: anywhere;
+    }
     .callout{display:grid; gap:14px; grid-template-columns:1fr; padding:18px; background: var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow: var(--shadow)}
     .stack{display:flex; flex-direction:column; gap:8px}
     .row{display:flex; flex-wrap:wrap; gap:10px; align-items:center}
@@ -165,8 +171,9 @@
   <link rel="icon" type="image/svg+xml" href="axl-logo.svg">
   <!-- Font Awesome (local) -->
   <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" />
     <!-- Highlight.js (CDN) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai-sublime.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/panda-syntax-dark.min.css" />
 </head>
 <body>
   <header class="nav" role="banner" aria-label="Primary">
@@ -386,21 +393,22 @@ Generic DB   5–20 MB
         if (window.hljs) {
           // Register a lightweight custom highlighter for AXL query language
           try{
-            hljs.registerLanguage('axl', function(){
+            hljs.registerLanguage('axl', function(hljs){
               return {
                 name: 'AXL',
-                keywords: {
-                  $pattern: /[A-Za-z_][A-Za-z0-9_-]*/,
-                  keyword: 'select from where order by take sum and in desc',
-                  literal: 'true false',
-                },
+                aliases: ['axl'],
                 contains: [
+                  // keywords in s-expressions: (select ...), (sum ...), etc.
+                  { className: 'keyword', begin: /\b(select|from|where|order|by|take|sum|and|in|desc|group|join|update|read-csv|lambda)\b/ },
+                  // uppercase symbols like AAPL, GOOG
+                  { className: 'symbol', begin: /\b[A-Z]{2,}\b/ },
+                  // numbers and strings
                   { className: 'number', begin: /\b\d+(?:\.\d+)?\b/ },
                   { className: 'string', begin: '"', end: '"' },
-                  { className: 'symbol', begin: /\b[A-Z]{2,}\b/ },
+                  // punctuation to keep structure visible
                   { className: 'punctuation', begin: /[\[\]\{\}\(\):]/ },
                   { className: 'operator', begin: /[+\-*\/<>]=?|==/ },
-                  { className: 'comment', begin: /;;/, end: /$/ },
+                  { className: 'comment', begin: /;;/, end: /$/ }
                 ]
               };
             });
@@ -436,13 +444,13 @@ Generic DB   5–20 MB
 
       // Interactive code picker
       const axlCode = `(select 
-  { from: trades
-    by: Symbol
-    price: (sum Price)
-    volume: (* Price Size)
-    where: (> Date 2025.01.01)
-    order: (desc)
-    take: 10000000 
+  {from: trades
+   by: Symbol
+   price: (sum Price)
+   volume: (* Price Size)
+   where: (> Date 2025.01.01)
+   order: (desc)
+   take: 10000000 
   })`;
       const snippets = {
         'Group': axlCode,
@@ -515,6 +523,7 @@ Generic DB   5–20 MB
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/c.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/clojure.min.js"></script>
 </body>
 </html>
 
