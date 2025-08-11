@@ -45,6 +45,15 @@
       border-bottom:1px solid var(--border);
     }
     .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px}
+    /* Dismissible announcement banner */
+    .announce{display:none; background: rgba(255,178,36,.10); border-top:1px solid rgba(255,178,36,.35); border-bottom:1px solid rgba(255,178,36,.35)}
+    .announce .inner{max-width:var(--maxw); margin:0 auto; padding:10px 20px; display:flex; gap:12px; align-items:center; justify-content:space-between}
+    .announce .msg{color:#e7ecf3; font-size:1.1rem}
+    .announce .actions{display:flex; gap:8px; align-items:center}
+    .announce .msg a{color:var(--brand); text-decoration:underline}
+    .announce .msg a:hover{filter:saturate(1.2)}
+    .announce .close{appearance:none; background:transparent; border:0; color:var(--muted); padding:8px; border-radius:8px; cursor:pointer}
+    .announce .close:hover{background:rgba(255,178,36,.12); color:var(--text)}
     .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text)}
     .logo{width:28px; height:28px; display:block; background: none}
     .brand span{font-weight:700; letter-spacing:.3px}
@@ -62,6 +71,7 @@
     .btn:hover{transform: translateY(-1px); filter:saturate(1.05)}
     .btn:active{transform: translateY(0)}
     .btn.ghost{background: transparent; color: var(--brand); border:1px solid rgba(255,178,36,.5)}
+    .btn.small{padding:8px 12px; border-radius:8px; font-size:.95rem}
     .hero{padding:84px 0 48px; border-bottom:1px solid var(--border); position:relative; overflow:hidden}
     .hero::before{
       content:""; position:absolute; inset:0; pointer-events:none;
@@ -194,13 +204,30 @@
       </a>
       <nav class="nav-links" aria-label="Main">
         <a href="#features">Features</a>
-        
-        
         <a href="/docs/">Docs</a>
+        <a href="/docs/guides/">Examples</a>
+        <a href="https://github.com/singaraiona/axl/releases/latest" target="_blank" rel="noopener noreferrer">Download</a>
         <a class="btn ghost" href="https://github.com/singaraiona/axl" target="_blank" rel="noopener noreferrer"><i class="ico fa-brands fa-github" aria-hidden="true"></i>GitHub</a>
       </nav>
     </div>
   </header>
+  <div id="announce" class="announce" role="status" aria-live="polite">
+    <div class="inner">
+      <div class="msg"><strong>Heads up:</strong> AXL DB v0.1 is coming soon — read the <a href="/docs/">announcement</a>.</div>
+      <div class="actions">
+        <button id="announceClose" class="close" aria-label="Dismiss announcement"><i class="ico fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+  </div>
+  <div id="announce" class="announce" role="status" aria-live="polite">
+    <div class="inner">
+      <div class="msg"><strong>Heads up:</strong> AXL DB v0.2 release is coming soon — new bindings, better docs, and more.</div>
+      <div class="actions">
+        <a class="btn small ghost" href="/docs/">Read more</a>
+        <button id="announceClose" class="close" aria-label="Dismiss announcement"><i class="ico fa-solid fa-xmark"></i></button>
+      </div>
+    </div>
+  </div>
 
   <main id="top">
     <section class="hero">
@@ -478,6 +505,22 @@
           setSnippet(btn.getAttribute('data-snippet'));
         });
       }
+
+      // Dismissible banner logic
+      (function(){
+        const banner = document.getElementById('announce');
+        const closeBtn = document.getElementById('announceClose');
+        try{
+          const dismissed = localStorage.getItem('axl:announce:dismissed');
+          if(!dismissed && banner){ banner.style.display = 'block'; }
+          if(closeBtn){
+            closeBtn.addEventListener('click', ()=>{
+              if(banner) banner.style.display = 'none';
+              try{ localStorage.setItem('axl:announce:dismissed', '1'); }catch(_){}
+            });
+          }
+        }catch(_){ if(banner) banner.style.display = 'block'; }
+      })();
     })();
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
