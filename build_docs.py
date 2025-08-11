@@ -419,7 +419,14 @@ def build_all() -> List[Path]:
         md_text = page.source_path.read_text(encoding="utf-8")
         html_content = convert_markdown(md_text)
         sidebar = build_sidebar(pages, page)
-        full_html = render_template(css, sidebar, html_content, page.title, "..")
+        # Compute correct base prefix from this page directory back to site root
+        rel_from_docs = page.output_path.relative_to(DOCS_OUT_DIR)
+        depth_dirs = len(rel_from_docs.parts) - 1  # number of parent directories under docs/
+        if depth_dirs <= 0:
+            base_prefix = ".."
+        else:
+            base_prefix = "/".join([".."] * (depth_dirs + 1))
+        full_html = render_template(css, sidebar, html_content, page.title, base_prefix)
         write_file(page.output_path, full_html)
         written.append(page.output_path)
     # write an index redirect for /docs/ → /docs/index.html
