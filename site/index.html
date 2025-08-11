@@ -9,6 +9,7 @@
     :root{
       --bg:#0a0f1a;
       --panel:#0d1320;
+      --code:#0b111b;
       --muted:#8fa1b7;
       --text:#e7ecf3;
       --brand:#ffb224;
@@ -96,6 +97,13 @@
     .features{padding:56px 0}
     .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:22px}
     .section-head h2{font-size: clamp(1.4rem, 2.2vw, 1.8rem); margin:0}
+    /* Code card */
+    .code-card{background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; position:relative}
+    .code-card .tabs{display:flex; gap:8px; align-items:center; padding:10px 12px; border-bottom:1px solid var(--border)}
+    .code-card .tab{padding:8px 12px; border-radius:999px; color:var(--muted); background:transparent; border:1px solid transparent; cursor:pointer}
+    .code-card .tab.active{color:var(--text); background:rgba(255,178,36,.12); border-color:rgba(255,178,36,.35); font-weight:700}
+    /* fix height to prevent any resize on snippet change */
+    .code-card pre.code{transition:none; height:240px}
     .feature-grid{
       display:grid; gap:14px;
       grid-template-columns: repeat(1, minmax(0,1fr));
@@ -119,10 +127,10 @@
     .bench-note{color:var(--muted); font-size:.85rem}
     .code{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size:.9rem; background: var(--panel); color: var(--text); border:none !important; border-radius:10px; padding:14px; overflow:auto;
+      font-size:.9rem; background: var(--code); color: var(--text); border:none !important; border-radius:10px; padding:14px; overflow:auto;
       box-shadow:none !important; outline:none !important;
     }
-    pre.code{border:none !important; box-shadow:none !important; outline:none !important; background: var(--panel)}
+    pre.code{border:none !important; box-shadow:none !important; outline:none !important; background: var(--code)}
     pre.code code{background:transparent !important; border:none !important; box-shadow:none !important; outline:none !important}
     .code code.hljs{background:transparent !important; border:none !important; box-shadow:none !important; outline:none !important}
     .callout{display:grid; gap:14px; grid-template-columns:1fr; padding:18px; background: var(--panel); border:1px solid var(--border); border-radius:var(--radius); box-shadow: var(--shadow)}
@@ -157,8 +165,8 @@
   <link rel="icon" type="image/svg+xml" href="axl-logo.svg">
   <!-- Font Awesome (local) -->
   <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
-     <!-- Highlight.js (CDN) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css" />
+    <!-- Highlight.js (CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai-sublime.min.css" />
 </head>
 <body>
   <header class="nav" role="banner" aria-label="Primary">
@@ -210,30 +218,18 @@
         </div>
 
         <div class="hero-panels">
-          <div class="panel fade-in" style="transition-delay:.1s">
-            <svg class="inline-chart" viewBox="0 0 520 120" role="img" aria-label="Throughput comparison: AXL DB vs Generic DB">
-              <desc>Illustrative microbenchmark: top‑1 cosine similarity over 1M 128‑D vectors.</desc>
-              <defs>
-                <linearGradient id="g1" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#ffb224"/>
-                  <stop offset="100%" stop-color="#ffb224"/>
-                </linearGradient>
-                <linearGradient id="g2" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stop-color="#a23155"/>
-                  <stop offset="100%" stop-color="#a23155"/>
-                </linearGradient>
-              </defs>
-              <rect x="0" y="0" width="520" height="120" fill="none"/>
-              <g transform="translate(70,18)">
-                <text x="-50" y="22" fill="#9fb2cc" font-size="12">AXL DB</text>
-                <rect x="0" y="10" width="360" height="22" rx="6" fill="url(#g1)"/>
-                <text x="370" y="26" fill="#cfe6ff" font-size="12">3.6M q/s</text>
-                <text x="-50" y="78" fill="#9fb2cc" font-size="12">Generic</text>
-                <rect x="0" y="66" width="210" height="22" rx="6" fill="url(#g2)"/>
-                <text x="220" y="82" fill="#cfe6ff" font-size="12">2.1M q/s</text>
-              </g>
-            </svg>
-            <p class="bench-note">Illustrative internal microbenchmark on commodity x86; details, CPU flags, and methodology in docs.</p>
+          <div class="panel fade-in code-card" style="transition-delay:.1s">
+            <div class="tabs" id="codeTabs">
+              <button class="tab active" data-snippet="Group">Group</button>
+              <button class="tab" data-snippet="Join">Join</button>
+              <button class="tab" data-snippet="Update">Update</button>
+              <button class="tab" data-snippet="Read CSV">Read CSV</button>
+              <button class="tab" data-snippet="Lambdas">Lambdas</button>
+            </div>
+            <div class="stack" style="padding:12px">
+              <pre class="code" aria-label="Query example"><code id="axl-code" class="language-axl"></code></pre>
+              
+            </div>
           </div>
           <div class="panel fade-in" style="transition-delay:.15s">
             <div class="stack">
@@ -387,7 +383,30 @@ Generic DB   5–20 MB
     (function(){
       // Syntax highlighting
       document.addEventListener('DOMContentLoaded', function(){
-        if (window.hljs) { hljs.highlightAll(); }
+        if (window.hljs) {
+          // Register a lightweight custom highlighter for AXL query language
+          try{
+            hljs.registerLanguage('axl', function(){
+              return {
+                name: 'AXL',
+                keywords: {
+                  $pattern: /[A-Za-z_][A-Za-z0-9_-]*/,
+                  keyword: 'select from where order by take sum and in desc',
+                  literal: 'true false',
+                },
+                contains: [
+                  { className: 'number', begin: /\b\d+(?:\.\d+)?\b/ },
+                  { className: 'string', begin: '"', end: '"' },
+                  { className: 'symbol', begin: /\b[A-Z]{2,}\b/ },
+                  { className: 'punctuation', begin: /[\[\]\{\}\(\):]/ },
+                  { className: 'operator', begin: /[+\-*\/<>]=?|==/ },
+                  { className: 'comment', begin: /;;/, end: /$/ },
+                ]
+              };
+            });
+          }catch(e){}
+          hljs.highlightAll();
+        }
       });
       // Year
       document.getElementById('y').textContent = new Date().getFullYear();
@@ -414,6 +433,83 @@ Generic DB   5–20 MB
           history.pushState(null, '', '#'+id);
         }
       });
+
+      // Interactive code picker
+      const axlCode = `(select 
+  { from: trades
+    by: Symbol
+    price: (sum Price)
+    volume: (* Price Size)
+    where: (> Date 2025.01.01)
+    order: (desc)
+    take: 10000000 
+  })`;
+      const snippets = {
+        'Group': axlCode,
+        'Join': `(select
+  { from: (join orders o users u (= o.user_id u.id))
+    by: u.Country
+    total: (sum o.Amount)
+    take: 100
+  })`,
+        'Update': `(update orders (set Status :shipped) (where (= Id 42)))`,
+        'Read CSV': `(read-csv "trades.csv" {:sep "," :header true})`,
+        'Lambdas': `(map (lambda (x) (* x x)) [1 2 3 4 5])`
+      };
+      let codeEl = document.getElementById('axl-code');
+      const codePre = codeEl ? codeEl.closest('pre') : null;
+      const tabs = document.getElementById('codeTabs');
+      function setSnippet(name){
+        const next = snippets[name] || axlCode;
+        // Reset DOM and re-inject to avoid residual spans from previous highlighting
+        const newCode = document.createElement('code');
+        newCode.id = 'axl-code';
+        newCode.className = 'language-axl';
+        newCode.textContent = next;
+        if(codeEl && codeEl.parentNode){ codeEl.parentNode.replaceChild(newCode, codeEl); }
+        if (window.hljs) hljs.highlightElement(newCode);
+        // Update ref
+        codeEl = newCode;
+      }
+      function setFixedMinHeight(){
+        if(!codePre || !codeEl) return;
+        const measPre = document.createElement('pre');
+        measPre.className = 'code';
+        // measure using the same width to avoid reflow differences
+        const visibleRect = codePre.getBoundingClientRect();
+        measPre.style.position = 'absolute';
+        measPre.style.visibility = 'hidden';
+        measPre.style.pointerEvents = 'none';
+        measPre.style.width = Math.ceil(visibleRect.width) + 'px';
+        measPre.style.left = '0';
+        measPre.style.top = '0';
+        const measCode = document.createElement('code');
+        measCode.className = 'language-axl';
+        measPre.appendChild(measCode);
+        codePre.parentNode.appendChild(measPre);
+        let maxH = 0;
+        for(const key of Object.keys(snippets)){
+          measCode.textContent = snippets[key];
+          if (window.hljs) hljs.highlightElement(measCode);
+          maxH = Math.max(maxH, measPre.getBoundingClientRect().height);
+          // reset to plain text for next round to avoid residual spans
+          measCode.textContent = '';
+        }
+        codePre.style.minHeight = (Math.ceil(maxH) + 2) + 'px';
+        measPre.remove();
+      }
+
+      if(tabs && codeEl){
+        setSnippet('Group');
+        setFixedMinHeight();
+        tabs.addEventListener('click', (e)=>{
+          const btn = e.target.closest('button[data-snippet]');
+          if(!btn) return;
+          tabs.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+          btn.classList.add('active');
+          setSnippet(btn.getAttribute('data-snippet'));
+        });
+      }
     })();
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>

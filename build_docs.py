@@ -316,7 +316,7 @@ __CSS__
   </style>
   <link rel=\"icon\" type=\"image/svg+xml\" href=\"../axl-logo.svg\"> 
   <link rel=\"stylesheet\" href=\"../vendor/fontawesome/css/all.min.css\" />
-  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css\" />
+  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/monokai-sublime.min.css\" />
 </head>
 <body>
   <header class=\"nav\" role=\"banner\" aria-label=\"Primary\">
