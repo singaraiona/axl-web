@@ -157,7 +157,7 @@
   <link rel="icon" type="image/svg+xml" href="axl-logo.svg">
   <!-- Font Awesome (local) -->
   <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
-    <!-- Highlight.js (CDN) -->
+     <!-- Highlight.js (CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css" />
 </head>
 <body>
@@ -172,7 +172,7 @@
         <a href="#performance">Performance</a>
         <a href="#use-cases">Use cases</a>
         <a href="/docs/">Docs</a>
-        <a class="btn ghost" href="https://github.com/hetoku/axl-db" target="_blank" rel="noopener noreferrer"><i class="ico fa-brands fa-github" aria-hidden="true"></i>GitHub</a>
+        <a class="btn ghost" href="https://github.com/singaraiona/axl" target="_blank" rel="noopener noreferrer"><i class="ico fa-brands fa-github" aria-hidden="true"></i>GitHub</a>
       </nav>
     </div>
   </header>
@@ -182,19 +182,20 @@
       <div class="container hero-grid">
         <div>
           <span class="eyebrow fade-in">Tiny core. Zero dependencies. Enterprise‑grade speed.</span>
-          <h1 class="fade-in" style="transition-delay:.05s">Next‑gen vector database, in plain C.</h1>
+          <h1 class="fade-in" style="transition-delay:.05s">Fast, minimalist vector engine for real-time analytics. Plain C. No bloat.</h1>
           <p class="tagline fade-in" style="transition-delay:.1s">
             AXL DB is a compact vector database engine engineered for ultra‑low latency and massive scale.
-            Cache‑friendly layouts, SIMD‑optimized kernels, and a zero‑dependency build deliver consistent performance
+            Cache‑friendly layouts, SIMD‑optimized core, and a zero‑dependency brings consistent performance
             from embedded devices to high‑density servers.
           </p>
           <div class="cta-row fade-in" style="transition-delay:.15s">
             <a class="btn" href="/docs/" aria-label="Get started with AXL DB">Get Started</a>
             <a class="btn ghost" href="https://github.com/sponsors/hetoku" target="_blank" rel="noopener noreferrer" aria-label="Sponsor AXL DB on GitHub"><i class="ico fa-brands fa-github" aria-hidden="true"></i>Sponsor on GitHub</a>
+            <a class="btn ghost" href="https://github.com/singaraiona/axl/releases/latest" target="_blank" rel="noopener noreferrer" aria-label="Download latest AXL DB release">Download</a>
           </div>
           <div class="kpis fade-in" style="margin-top:18px; transition-delay:.2s">
             <div class="kpi">
-              <div class="v">~300–600 KB</div>
+              <div class="v">< 1MB</div>
               <div class="l">Core footprint</div>
             </div>
             <div class="kpi">
@@ -239,9 +240,9 @@
               <strong>Designed for real‑world workloads</strong>
               <ul style="margin:0; padding-left:18px; color:#cbd6e6">
                 <li>High‑frequency trading: deterministic latency under pressure</li>
-                <li>IoT gateways: compact binaries, rugged deployments</li>
                 <li>Time‑series analytics: vector + scalar, beyond‑RAM datasets</li>
                 <li>Embedded analytics: drop‑in C library, no runtime</li>
+                <li>Compact and powerfull LISP-like syntax</li>
               </ul>
             </div>
           </div>
@@ -257,15 +258,15 @@
         </div>
         <div class="feature-grid">
           <article class="feature fade-in">
-            <div class="icon" aria-hidden="true"><i class="fa-solid fa-circle-dot"></i></div>
+            <div class="icon" aria-hidden="true"><i class="fa-solid fa-feather"></i></div>
             <div>
               <h3>Tiny core</h3>
-              <p>Hundreds of kilobytes compiled — fast cold starts, minimal attack surface, excellent for containers and edge.</p>
+              <p>Hundreds of kilobytes compiled — fast cold starts, no deployment hassle. Completely fits into CPU cache.</p>
             </div>
           </article>
 
           <article class="feature fade-in" style="transition-delay:.03s">
-            <div class="icon" aria-hidden="true"><i class="fa-solid fa-code"></i></div>
+            <div class="icon" aria-hidden="true"><i class="fa-solid fa-pen-nib"></i></div>
             <div>
               <h3>Plain C</h3>
               <p>Portable, auditable, and straightforward to embed. No C++ runtime, no bindings required to get started.</p>
@@ -281,10 +282,10 @@
           </article>
 
           <article class="feature fade-in" style="transition-delay:.09s">
-            <div class="icon" aria-hidden="true"><i class="fa-solid fa-gauge-simple-high"></i></div>
+            <div class="icon" aria-hidden="true"><i class="fa-solid fa-bolt"></i></div>
             <div>
               <h3>Extreme performance</h3>
-              <p>SIMD‑first kernels, cache‑aware layouts, batched IO. Built to keep hot paths hot and tail latency low.</p>
+              <p>SIMD‑first interpreter, cache‑aware layouts, batched IO. Built to keep hot paths hot and tail latency low.</p>
             </div>
           </article>
 
@@ -292,15 +293,15 @@
             <div class="icon" aria-hidden="true"><i class="fa-solid fa-database"></i></div>
             <div>
               <h3>Beyond‑memory datasets</h3>
-              <p>Stream and index data that doesn’t fit in RAM. Predictable throughput under sustained load.</p>
+              <p>Index and query data that doesn’t fit in RAM. Run historical analytics over big data.</p>
             </div>
           </article>
 
           <article class="feature fade-in" style="transition-delay:.15s">
-            <div class="icon" aria-hidden="true"><i class="fa-solid fa-cubes"></i></div>
+            <div class="icon" aria-hidden="true"><i class="fa-solid fa-code"></i></div>
             <div>
-              <h3>Production‑ready primitives</h3>
-              <p>Crash‑safe persistence, vector‑optimized indexes, and simple APIs designed for real systems.</p>
+              <h3>Simple and powerful LISP‑like syntax</h3>
+              <p>Concise, expressive queries with a familiar LISP‑style grammar — easy to read, write, and embed.</p>
             </div>
           </article>
         </div>
@@ -372,10 +373,11 @@ Generic DB   5–20 MB
   <footer class="footer" role="contentinfo">
     <div class="container row" style="justify-content:space-between">
       <div class="row" style="gap:14px">
-        <a href="https://github.com/hetoku/axl-db" target="_blank" rel="noopener noreferrer"><i class="ico fa-brands fa-github"></i>GitHub</a>
+        <a href="https://github.com/singaraiona/axl" target="_blank" rel="noopener noreferrer"><i class="ico fa-brands fa-github"></i>GitHub</a>
         <a href="/docs/" rel="noopener noreferrer"><i class="ico fa-regular fa-file-lines"></i>Docs</a>
-        <a href="https://github.com/hetoku/axl-db/blob/main/LICENSE" target="_blank" rel="noopener noreferrer"><i class="ico fa-regular fa-star"></i>License</a>
-        <a href="https://github.com/hetoku/axl-db/issues" target="_blank" rel="noopener noreferrer"><i class="ico fa-regular fa-message"></i>Contact</a>
+        <a href="https://github.com/singaraiona/axl/releases/latest" target="_blank" rel="noopener noreferrer"><i class="ico fa-regular fa-circle-down"></i>Download</a>
+        <a href="https://github.com/singaraiona/axl/blob/main/LICENSE" target="_blank" rel="noopener noreferrer"><i class="ico fa-regular fa-star"></i>License</a>
+        <a href="mailto:singaraiona@gmail.com"><i class="ico fa-regular fa-message"></i>Contact</a>
       </div>
       <div>© <span id="y"></span> AXL DB. All rights reserved.</div>
     </div>

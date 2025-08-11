@@ -330,7 +330,7 @@ __CSS__
         <a href=\"../index.html#performance\">Performance</a>
         <a href=\"../index.html#use-cases\">Use cases</a>
         <a href=\"../index.html#get-started\">Get started</a>
-        <a class=\"btn ghost\" href=\"https://github.com/hetoku/axl-db\" target=\"_blank\" rel=\"noopener noreferrer\"><i class=\"ico fa-brands fa-github\" aria-hidden=\"true\"></i>GitHub</a>
+        <a class=\"btn ghost\" href=\"https://github.com/singaraiona/axl\" target=\"_blank\" rel=\"noopener noreferrer\"><i class=\"ico fa-brands fa-github\" aria-hidden=\"true\"></i>GitHub</a>
       </nav>
     </div>
   </header>
@@ -349,10 +349,10 @@ __CSS__
   <footer class=\"footer\" role=\"contentinfo\">
     <div class=\"container row\" style=\"justify-content:space-between\">
       <div class=\"row\" style=\"gap:14px\">
-        <a href=\"https://github.com/hetoku/axl-db\" target=\"_blank\" rel=\"noopener noreferrer\"><i class=\"ico fa-brands fa-github\"></i>GitHub</a>
+        <a href=\"https://github.com/singaraiona/axl\" target=\"_blank\" rel=\"noopener noreferrer\"><i class=\"ico fa-brands fa-github\"></i>GitHub</a>
         <a href=\"/docs/\"><i class=\"ico fa-regular fa-file-lines\"></i>Docs</a>
-        <a href=\"https://github.com/hetoku/axl-db/blob/main/LICENSE\" target=\"_blank\" rel=\"noopener noreferrer\"><i class=\"ico fa-regular fa-star\"></i>License</a>
-        <a href=\"https://github.com/hetoku/axl-db/issues\" target=\"_blank\" rel=\"noopener noreferrer\"><i class=\"ico fa-regular fa-message\"></i>Contact</a>
+        <a href=\"https://github.com/singaraiona/axl/blob/main/LICENSE\" target=\"_blank\" rel=\"noopener noreferrer\"><i class=\"ico fa-regular fa-star\"></i>License</a>
+        <a href=\"mailto:singaraiona@gmail.com\"><i class=\"ico fa-regular fa-message\"></i>Contact</a>
       </div>
       <div>© <span id=\"y\"></span> AXL DB. All rights reserved.</div>
     </div>
