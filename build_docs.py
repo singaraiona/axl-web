@@ -425,6 +425,13 @@ def build_all() -> List[Path]:
     css = read_site_css()
     pages = discover_docs()
     written: List[Path] = []
+    # If no pages, generate a minimal index to avoid broken builds
+    if not pages:
+        minimal_sidebar = '<nav class="docs-nav" aria-label="Docs"><ul><li><span>No pages</span></li></ul></nav>'
+        minimal_content = '<p>Add Markdown files to the <code>docs/</code> folder to populate documentation.</p>'
+        html = render_template(css, minimal_sidebar, minimal_content, "Documentation", base_prefix="..")
+        write_file(DOCS_OUT_DIR / "index.html", html)
+        return [DOCS_OUT_DIR / "index.html"]
     for page in pages:
         md_text = page.source_path.read_text(encoding="utf-8")
         html_content = convert_markdown(md_text)
@@ -439,11 +446,15 @@ def build_all() -> List[Path]:
         full_html = render_template(css, sidebar, html_content, page.title, base_prefix)
         write_file(page.output_path, full_html)
         written.append(page.output_path)
-    # write an index redirect for /docs/ → /docs/index.html
+    # Ensure /docs/ loads a valid page. If no docs/index.md exists, redirect to first available page
     index_target = DOCS_OUT_DIR / "index.html"
-    if not any(p.output_path.name == "index.html" for p in pages):
-        redirect = """<!DOCTYPE html><meta http-equiv=refresh content="0; url=./index.html">
-<link rel=\"canonical\" href=\"./index.html\">"""
+    has_index = any(p.output_path.name == "index.html" for p in pages)
+    if not has_index:
+        # choose first page as default landing
+        default_page = pages[0]
+        rel = default_page.output_path.relative_to(DOCS_OUT_DIR)
+        redirect = f'<!DOCTYPE html><meta http-equiv="refresh" content="0; url=./{rel.as_posix()}">\n<link rel="canonical" href="./{rel.as_posix()}">' \
+            if rel.as_posix() != 'index.html' else '<!DOCTYPE html>'
         write_file(index_target, redirect)
         written.append(index_target)
 
