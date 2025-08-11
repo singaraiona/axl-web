@@ -289,6 +289,14 @@ def render_template(css: str, sidebar_html: str, content_html: str, page_title: 
   <meta name=\"description\" content=\"AXL DB Documentation\" />
   <style>
 __CSS__
+    /* Emphasize identifiers and keywords in code with light blue + bold */
+    .hljs-keyword,
+    .hljs-title,
+    .hljs-variable,
+    .hljs-symbol,
+    .hljs-attr,
+    .hljs-attribute,
+    .hljs-property { color:#10b1fe !important; font-weight:700 !important; }
     .docs-layout{display:grid; grid-template-columns: 260px 1fr; gap:18px;}
     .docs-nav ul{list-style:none; margin:0; padding:0}
     .docs-nav ul ul{margin:6px 0 6px 12px; padding-left:12px; border-left:1px solid var(--border)}
@@ -318,7 +326,7 @@ __CSS__
   <link rel=\"icon\" type=\"image/svg+xml\" href=\"../axl-logo.svg\"> 
   <link rel=\"stylesheet\" href=\"../vendor/fontawesome/css/all.min.css\" />
   <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap\" />
-  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/panda-syntax-dark.min.css\" />
+  <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css\" />
 </head>
 <body>
   <header class=\"nav\" role=\"banner\" aria-label=\"Primary\">

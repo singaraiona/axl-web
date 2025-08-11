@@ -173,7 +173,17 @@
   <link rel="stylesheet" href="vendor/fontawesome/css/all.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&display=swap" />
     <!-- Highlight.js (CDN) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/panda-syntax-dark.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark-reasonable.min.css" />
+    <style>
+      /* Emphasize identifiers and keywords in code with light blue + bold */
+      .hljs-keyword,
+      .hljs-title,
+      .hljs-variable,
+      .hljs-symbol,
+      .hljs-attr,
+      .hljs-attribute,
+      .hljs-property { color:#10b1fe !important; font-weight:700 !important; }
+    </style>
 </head>
 <body>
   <header class="nav" role="banner" aria-label="Primary">
@@ -204,9 +214,9 @@
             from embedded devices to high‑density servers.
           </p>
           <div class="cta-row fade-in" style="transition-delay:.15s">
-            <a class="btn" href="/docs/" aria-label="Get started with AXL DB">Get Started</a>
+            <a class="btn" href="/docs/" aria-label="Get started with AXL DB"><i class="ico fa-solid fa-rocket"></i>Get Started</a>
             <a class="btn ghost" href="https://github.com/sponsors/hetoku" target="_blank" rel="noopener noreferrer" aria-label="Sponsor AXL DB on GitHub"><i class="ico fa-brands fa-github" aria-hidden="true"></i>Sponsor on GitHub</a>
-            <a class="btn ghost" href="https://github.com/singaraiona/axl/releases/latest" target="_blank" rel="noopener noreferrer" aria-label="Download latest AXL DB release">Download</a>
+            <a class="btn ghost" href="https://github.com/singaraiona/axl/releases/latest" target="_blank" rel="noopener noreferrer" aria-label="Download latest AXL DB release"><i class="ico fa-regular fa-circle-down"></i>Download</a>
           </div>
           <div class="kpis fade-in" style="margin-top:18px; transition-delay:.2s">
             <div class="kpi">
@@ -257,7 +267,7 @@
       <div class="container">
         <div class="section-head">
           <h2>Key features</h2>
-          <a class="btn ghost" href="/docs/">Start in minutes</a>
+          <a class="btn ghost" href="/docs/"><i class="ico fa-solid fa-play"></i>Start in minutes</a>
         </div>
         <div class="feature-grid">
           <article class="feature fade-in">
