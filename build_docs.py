@@ -310,7 +310,7 @@ __CSS__
     .docs-content p{margin:.6em 0; color:#cbd6e6; font-size:1rem}
     .docs-content table{width:100%; border-collapse:collapse; margin:10px 0;}
     .docs-content th, .docs-content td{border:1px solid var(--border); padding:8px; text-align:left}
-    .docs-content pre{background: var(--code); border-radius:12px; padding:14px; margin:16px 0; overflow:auto; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 8px 20px rgba(0,0,0,0.25)}
+    .docs-content pre{background: var(--code, #0b111b); border-radius:12px; padding:14px; margin:16px 0; overflow:auto; box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 8px 20px rgba(0,0,0,0.25)}
     .docs-content pre code{background: transparent !important}
     @media (max-width: 960px){ .docs-layout{grid-template-columns:1fr} }
   </style>
@@ -322,7 +322,7 @@ __CSS__
   <header class=\"nav\" role=\"banner\" aria-label=\"Primary\">
     <div class=\"container nav-inner\">
       <a class=\"brand\" href=\"../index.html#top\" aria-label=\"AXL DB home\">
-        <img class=\"logo\" src=\"../axl-logo-glyph.svg\" alt=\"AXL logo\" width=\"28\" height=\"28\"/>
+        <img class=\"logo\" src=\"../axl-logo.svg\" alt=\"AXL logo\" width=\"28\" height=\"28\"/>
         <span>AXL DB</span>
       </a>
       <nav class=\"nav-links\" aria-label=\"Main\">
@@ -430,22 +430,7 @@ def build_all() -> List[Path]:
         write_file(index_target, redirect)
         written.append(index_target)
 
-    # Also generate a root-level docs.html using the docs index content
-    root_page_src: Optional[DocPage] = None
-    for p in pages:
-        if p.output_path.name == "index.html":
-            root_page_src = p
-            break
-    if root_page_src is None and pages:
-        root_page_src = pages[0]
-    if root_page_src is not None:
-        md_text = root_page_src.source_path.read_text(encoding="utf-8")
-        html_content = convert_markdown(md_text)
-        sidebar = build_sidebar(pages, root_page_src)
-        root_html = render_template(css, sidebar, html_content, root_page_src.title, base_prefix=".")
-        out_page = SITE_DIR / "docs.html"
-        write_file(out_page, root_html)
-        written.append(out_page)
+    # No longer generate a root-level docs.html; rely on site/docs/index.html
 
     return written
 
