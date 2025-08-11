@@ -194,8 +194,8 @@
       </a>
       <nav class="nav-links" aria-label="Main">
         <a href="#features">Features</a>
-        <a href="#performance">Performance</a>
-        <a href="#use-cases">Use cases</a>
+        
+        
         <a href="/docs/">Docs</a>
         <a class="btn ghost" href="https://github.com/singaraiona/axl" target="_blank" rel="noopener noreferrer"><i class="ico fa-brands fa-github" aria-hidden="true"></i>GitHub</a>
       </nav>
@@ -321,60 +321,9 @@
       </div>
     </section>
 
-    <section id="performance" class="usecases">
-      <div class="container">
-        <div class="section-head">
-          <h2>Performance at a glance</h2>
-          <span class="bench-note">Numbers indicative; full methodology in documentation.</span>
-        </div>
-        <div class="cards">
-          <div class="card fade-in">
-            <h3 class="row"><i class="ico fa-solid fa-chart-line"></i>Throughput</h3>
-            <p>Top‑k nearest‑neighbor search on 1M × 128‑D (float32), cosine similarity.</p>
-            <div class="code" aria-label="Throughput table">
-AXL DB       ~3.6M queries/s
-Generic DB   ~2.1M queries/s
-            </div>
-          </div>
-          <div class="card fade-in" style="transition-delay:.04s">
-            <h3 class="row"><i class="ico fa-regular fa-clock"></i>Latency</h3>
-            <p>P99 search latency under mixed read/write workload.</p>
-            <div class="code">
-AXL DB       ~1.8 ms
-Generic DB   ~4.2 ms
-            </div>
-          </div>
-          <div class="card fade-in" style="transition-delay:.08s">
-            <h3 class="row"><i class="ico fa-solid fa-weight-hanging"></i>Footprint</h3>
-            <p>Static binary size with SIMD enabled, stripped.</p>
-            <div class="code">
-AXL DB       ~480 KB
-Generic DB   5–20 MB
-            </div>
-          </div>
-          <div class="card fade-in" style="transition-delay:.12s">
-            <h3 class="row"><i class="ico fa-solid fa-bolt"></i>Energy</h3>
-            <p>Fewer cache misses, fewer cycles — better perf/W for sustained search workloads.</p>
-            <div class="code">Lower cycles/query → lower cost/query at scale</div>
-          </div>
-        </div>
-      </div>
-    </section>
+    
 
-    <section id="use-cases" class="usecases">
-      <div class="container">
-        <div class="section-head">
-          <h2>Where AXL DB shines</h2>
-          <span class="bench-note">Built for both edge deployments and hyperscale backends.</span>
-        </div>
-        <div class="cards">
-          <div class="card fade-in"><h3 class="row"><i class="ico fa-solid fa-gauge"></i>High‑frequency trading</h3><p>Deterministic latency and tiny binaries keep your critical path tight, even at peak market volatility.</p></div>
-          <div class="card fade-in" style="transition-delay:.03s"><h3 class="row"><i class="ico fa-solid fa-tower-broadcast"></i>IoT at the edge</h3><p>Zero‑dependency builds for rugged gateways and sensors. No network? No problem.</p></div>
-          <div class="card fade-in" style="transition-delay:.06s"><h3 class="row"><i class="ico fa-solid fa-chart-area"></i>Time‑series analytics</h3><p>Vector search + scalar filters over large, append‑only streams with predictable performance.</p></div>
-          <div class="card fade-in" style="transition-delay:.09s"><h3 class="row"><i class="ico fa-solid fa-microchip"></i>Embedded analytics</h3><p>Drop the C library into your product for local, private inference and search — no server required.</p></div>
-        </div>
-      </div>
-    </section>
+    
 
     
 
